@@ -6,7 +6,7 @@ define(function (require) {
    * Module dependencies
    */
 
-  // var myComponent = require('component/my_component');
+  var searchColumn = require('component/search_column');
 
   /**
    * Module exports
@@ -19,7 +19,8 @@ define(function (require) {
    */
 
   function initialize() {
-    // myComponent.attachTo(document);
+    searchColumn.attachTo('#td-column-1', {
+      term: '#yeoman'
+    });
   }
-
 });

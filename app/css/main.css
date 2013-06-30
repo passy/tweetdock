@@ -4,6 +4,8 @@
 .td-container > div {
   border-radius: 4px;
   padding: 1em;
+
+  overflow-y: auto;
 }
 
 .td-container > div:nth-child(even) {
@@ -12,4 +14,8 @@
 
 .td-container > div:nth-child(odd) {
   background: #dceaf4;
+}
+
+.td-tweet {
+  margin-bottom: 1em;
 }

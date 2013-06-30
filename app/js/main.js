@@ -1,11 +1,19 @@
+/* global DEBUG */
 'use strict';
 
 requirejs.config({
   baseUrl: '',
   paths: {
-    'flight': 'bower_components/flight',
-    'component': 'js/component',
-    'page': 'js/page'
+    flight: 'bower_components/flight',
+    handlebars: 'bower_components/handlebars/handlebars',
+    component: 'js/component',
+    page: 'js/page',
+    templates: 'js/templates'
+  },
+  shim: {
+    handlebars: {
+      exports: 'Handlebars'
+    }
   }
 });
 
@@ -20,6 +28,7 @@ require(
 
   function(compose, registry, advice, withLogging, debug) {
     debug.enable(true);
+    DEBUG.events.logAll();
     compose.mixin(registry, [advice.withAdvice, withLogging]);
 
     require(['page/default'], function(initializeDefault) {

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "flight": "~1.0.9",
-    "requirejs": "~2.1.5"
+    "requirejs": "~2.1.5",
+    "handlebars": "~1.0.0"
   },
   "devDependencies": {
     "flight-jasmine": "~1.0.0",
