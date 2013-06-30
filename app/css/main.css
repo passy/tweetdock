@@ -1,0 +1,15 @@
+@import "bootstrap.css";
+@import "bootstrap-responsive.css";
+
+.td-container > div {
+  border-radius: 4px;
+  padding: 1em;
+}
+
+.td-container > div:nth-child(even) {
+  background: #bbd8e9;
+}
+
+.td-container > div:nth-child(odd) {
+  background: #dceaf4;
+}
