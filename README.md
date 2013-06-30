@@ -1,10 +1,15 @@
 # flight-tweetdock
 
-## Contributing to this project
+> Toying around with [Flight](http://twitter.github.io/flight/) to build
+> something similar to [TweetDeck](http://tweetdeck.com/).
 
-Anyone and everyone is welcome to contribute. Please take a moment to
-review the [guidelines for contributing](CONTRIBUTING.md).
+There isn't anything to see, yet. This will need some sort of back-end to
+realize the search with the Twitter API v1.1. Anyway, if you want to snoop
+around, you can set it up with:
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+```bash
+npm install & bower install
+grunt server
+```
+
+License: [WTFPL](http://www.wtfpl.net/)
