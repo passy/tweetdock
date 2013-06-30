@@ -33,33 +33,48 @@
     </div>
 
     <script type="text/handlebars" id="template-column">
-      <h4>Hello, World!</h4>
-
-      <section class="td-tweet-list">
-        <article class="td-tweet">
-          <header>
-          <strong class="from">@passy</strong>
-          </header>
-          <div class="content">Unicorns! Lorem unicorn sparkles confettisprinkles.</div>
-        </article>
-
-        {{#each tweets}}
-          <article class="td-tweet">
-            <header>
-            <strong class="from">{{author}}</strong>
-            </header>
-            <div class="body">{{body}}</div>
-          </article>
-        {{/each}}
+      <h4 class="title">{{title}}</h4>
+      <section class="td-tweet-holder">
       </section>
     </script>
+
+    <script type="text/handlebars" id="template-tweet-items">
+      {{#each tweets}}
+        <article class="td-tweet">
+          <header>
+          <strong class="from"><a target="_blank" href="https://twitter.com/{{user.screen_name}}">
+            @{{user.screen_name}}
+          </a></strong>
+          </header>
+          <div class="text">{{text}}</div>
+        </article>
+      {{/each}}
+    </script>
+
+    <div class="modal hide fade" id="td-search-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Search</h3>
+      </div>
+      <div class="modal-body">
+        <p>What do you want to search for?</p>
+        <form id="td-search-modal-form" action="#">
+          <input type="text" name="query" placeholder="#unicornconf">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="td-search-modal-form" class="btn btn-primary">Save changes</a>
+      </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="/bower_components/es5-shim/es5-shim.js"></script>
     <script src="/bower_components/es5-shim/es5-sham.js"></script>
     <![endif]-->
     <script src="/bower_components/jquery/jquery.js"></script>
-    <script src="/bower_components/requirejs/require.js" data-main="/js/main.js"></script>
+    <script async src="/bower_components/requirejs/require.js" data-main="/js/main.js"></script>
+    <script async src="/bower_components/bootstrap/js/bootstrap-modal.js"></script>
+    <script async src="/bower_components/bootstrap/js/bootstrap-transition.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

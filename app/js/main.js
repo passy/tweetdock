@@ -6,7 +6,10 @@ requirejs.config({
   paths: {
     flight: 'bower_components/flight',
     handlebars: 'bower_components/handlebars/handlebars',
+    underscore: 'bower_components/lodash/lodash',
+
     component: 'js/component',
+    config: 'js/config',
     page: 'js/page',
     templates: 'js/templates'
   },

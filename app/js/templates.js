@@ -1,16 +1,24 @@
 define(
 
   [
-    'handlebars'
+    'handlebars',
+    'underscore'
   ],
 
-  function (Handlebars) {
+  function (Handlebars, _) {
     'use strict';
-    var column = document.getElementById('template-column').textContent;
 
-    return {
-      column: Handlebars.compile(column)
+    var templates = {};
+    var mapping = {
+      column: 'template-column',
+      tweetItems: 'template-tweet-items'
     };
-  }
 
+    _.each(mapping, function (value, key) {
+      var tmpl = document.getElementById(value).textContent;
+      templates[key] = Handlebars.compile(tmpl);
+    });
+
+    return templates;
+  }
 );
