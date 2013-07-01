@@ -20,4 +20,10 @@ clone it:
 git clone --recursive https://github.com/Polymer/mdv app/bower_components/mdv
 ```
 
+## Screenshot
+
+![It really looks that shitty.](media/screenshot_0.png)
+
+## License
+
 License: [WTFPL](http://www.wtfpl.net/)
