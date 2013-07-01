@@ -35,6 +35,7 @@ define(function (require) {
     this.render = function () {
       this.$node.html(templates.tweetItems({ tweets: '{{tweets}}' }));
       this.node.querySelector('template').model = { tweets: tweets };
+      Platform.performMicrotaskCheckpoint();
     };
 
     this.after('initialize', function () {
