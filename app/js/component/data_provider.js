@@ -39,9 +39,13 @@ define(function (require) {
     var poll = function poll() {
       _.each(streams, function (stream) {
         jQuery.ajax({
-          url: config.API_ENDPOINT + '/search',
+          url: config.API_ENDPOINT + '/search/tweets.json',
           type: 'get',
-          data: buildStreamData(stream)
+          data: buildStreamData(stream),
+          headers: {
+            'X-Requested-With': 'TweetDock v0.0.0',
+            'Authorization': config.API_AUTHORIZATION
+          }
         });
       });
       run();
@@ -53,8 +57,7 @@ define(function (require) {
       }
     };
 
-    this.startSearchStream = function startSearchStream(ev, data) {
-      streams[data.tag] = {
+    this.startSearchStream = function startSearchStream(ev, data) { streams[data.tag] = {
         query: data.query,
         lastId: 0
       };
