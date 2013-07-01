@@ -26,5 +26,11 @@ define(function (require) {
     searchColumn.attachTo('#td-column-1', {
       query: '#yeoman'
     });
+    searchColumn.attachTo('#td-column-2', {
+      query: '#prism'
+    });
+    searchColumn.attachTo('#td-column-3', {
+      query: '#javascript'
+    });
   }
 });

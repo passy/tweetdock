@@ -25,7 +25,7 @@ define(function (require) {
     });
 
     var streams = {};
-    var running = false;
+    var timeout = -1;
     var buildStreamData = function buildStreamData(stream) {
       /*jshint camelcase:false */
       return {
@@ -37,6 +37,7 @@ define(function (require) {
     };
 
     this.poll = function poll() {
+      console.log('Polling for streams: ', streams);
       _.each(streams, function (stream, tag) {
         jQuery.ajax({
           url: config.API_ENDPOINT + '/search/tweets.json',
@@ -48,22 +49,24 @@ define(function (require) {
           }
         }).then(function (data) {
           this.onDataReceived(tag, data);
+        }.bind(this)).always(function () {
+          // Start the next timeout after the request ended.
+          this.run();
         }.bind(this));
       }.bind(this));
-
-      this.run();
     };
 
     this.run = function run() {
-      if (running) {
-        window.setTimeout(this.poll.bind(this), config.POLLING_INTERVAL);
-      }
+      window.clearTimeout(timeout);
+      timeout = window.setTimeout(this.poll.bind(this), config.POLLING_INTERVAL);
     };
 
     this.onDataReceived = function (tag, data) {
       var stream = streams[tag];
       /*jshint camelcase:false */
       stream.lastId = data.search_metadata.max_id_str;
+
+      console.log('Received data for tag ', tag);
       this.trigger('dataSearchStreamReceived', {
         tag: tag,
         results: data.statuses
@@ -71,12 +74,12 @@ define(function (require) {
     };
 
     this.startSearchStream = function startSearchStream(ev, data) {
+      // Override an existing stream if the tag is already in use.
       streams[data.tag] = {
         query: data.query,
         lastId: 0
       };
 
-      running = !true;
       this.poll();
       this.run();
     };

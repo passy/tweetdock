@@ -53,23 +53,27 @@ define(function (require) {
 
     this.update = function () {
       this.model.title = 'Search: ' + this.attr.query;
+      this.requestStream();
       Platform.performMicrotaskCheckpoint();
     };
+
 
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');
 
+      this.requestStream = function () {
+        this.trigger('dataSearchStreamRequested', {
+          tag: tag,
+          query: this.attr.query
+        });
+      };
       this.render();
-      this.trigger('dataSearchStreamRequested', {
-        tag: tag,
-        query: this.attr.query
-      });
 
       this.on('click', {
         titleSelector: this.onTitleChange
       });
-      this.on('uiSaveSearchPrompt', this.onSearchPromptSave);
 
+      this.on('uiSaveSearchPrompt', this.onSearchPromptSave);
       tweetItems.attachTo(this.select('tweetHolderSelector'), {
         tag: tag
       });

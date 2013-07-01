@@ -25,16 +25,11 @@ define(function (require) {
       tag: null
     });
 
-    var tweets = [{
-      text: 'Hello Unicorn, flipping confetti lorem ipsum sparkling daisy dream.',
-      user: { screen_name: 'passy' }
-    }, {
-      text: 'Fluffly unicorn snuffles across daisily sparkling cloudheavens.',
-      user: { screen_name: 'sindresorhus' }
-    }];
+    var tweets = [];
+    var MAX_TWEETS = 30;
 
     this.render = function () {
-      this.$node.html(templates.tweetItems({ tweets: '{{tweets}}' }));
+      this.$node.html(templates.tweetItems());
       this.node.querySelector('template').model = { tweets: tweets };
       Platform.performMicrotaskCheckpoint();
     };
@@ -43,6 +38,8 @@ define(function (require) {
       _.each(results, function (tweet) {
         tweets.unshift(tweet);
       });
+      // Setting the maximum after everything has been added.
+      tweets.splice(MAX_TWEETS);
 
       Platform.performMicrotaskCheckpoint();
     };
@@ -50,6 +47,7 @@ define(function (require) {
     this.after('initialize', function () {
       this.render();
       this.on(document, 'dataSearchStreamReceived', function (ev, data) {
+        console.log('Tag received: ', data.tag, 'Own tag: ', this.attr.tag);
         if (data.tag === this.attr.tag) {
           this.onStreamData(data.results);
         }

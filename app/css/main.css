@@ -20,3 +20,7 @@
 .td-tweet {
   margin-bottom: 1em;
 }
+
+.td-tweet-holder {
+  transition: all 1s ease-in;
+}
