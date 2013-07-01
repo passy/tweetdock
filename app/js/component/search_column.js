@@ -30,8 +30,6 @@ define(function (require) {
       tweetHolderSelector: '.td-tweet-holder'
     });
 
-    this.model = {};
-
     this.onTitleChangeRequested = function () {
       this.trigger('uiShowSearchPrompt');
     };
@@ -60,6 +58,7 @@ define(function (require) {
 
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');
+      this.model = {};
 
       this.requestStream = function () {
         this.trigger('dataSearchStreamRequested', {

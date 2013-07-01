@@ -25,26 +25,27 @@ define(function (require) {
       tag: null
     });
 
-    var tweets = [];
     var MAX_TWEETS = 30;
 
     this.render = function () {
       this.$node.html(templates.tweetItems());
-      this.node.querySelector('template').model = { tweets: tweets };
+      this.node.querySelector('template').model = { tweets: this.tweets };
       Platform.performMicrotaskCheckpoint();
     };
 
     this.onStreamData = function (results) {
       _.each(results, function (tweet) {
-        tweets.unshift(tweet);
-      });
+        this.tweets.unshift(tweet);
+      }.bind(this));
       // Setting the maximum after everything has been added.
-      tweets.splice(MAX_TWEETS);
+      this.tweets.splice(MAX_TWEETS);
 
       Platform.performMicrotaskCheckpoint();
     };
 
     this.after('initialize', function () {
+      this.tweets = [];
+
       this.render();
       this.on(document, 'dataSearchStreamReceived', function (ev, data) {
         if (data.tag === this.attr.tag) {
