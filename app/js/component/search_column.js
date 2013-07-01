@@ -56,10 +56,6 @@ define(function (require) {
       Platform.performMicrotaskCheckpoint();
     };
 
-    this.onStreamData = function (results) {
-      console.log('results: ', results);
-    };
-
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');
 
@@ -73,11 +69,6 @@ define(function (require) {
         titleSelector: this.onTitleChange
       });
       this.on('uiSaveSearchPrompt', this.onSearchPromptSave);
-      this.on('dataSearchStreamReceived', function (ev, data) {
-        if (data.tag === tag) {
-          this.onStreamData(data.results);
-        }
-      });
 
       tweetItems.attachTo(this.select('tweetHolderSelector'), {
         tag: tag

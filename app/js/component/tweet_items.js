@@ -21,7 +21,7 @@ define(function (require) {
 
   function tweetItems() {
     this.defaultAttrs({
-
+      tag: null
     });
 
     var tweets = [{
@@ -38,8 +38,20 @@ define(function (require) {
       Platform.performMicrotaskCheckpoint();
     };
 
+    this.onStreamData = function (results) {
+      console.log('tweeets');
+      _.each(results, function (tweet) {
+        tweets.unshift(tweet);
+      });
+    };
+
     this.after('initialize', function () {
       this.render();
+      this.on(document, 'dataSearchStreamReceived', function (ev, data) {
+        if (data.tag === this.attr.tag) {
+          this.onStreamData(data.results);
+        }
+      });
     });
   }
 
