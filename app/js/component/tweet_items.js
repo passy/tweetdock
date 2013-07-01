@@ -47,7 +47,6 @@ define(function (require) {
     this.after('initialize', function () {
       this.render();
       this.on(document, 'dataSearchStreamReceived', function (ev, data) {
-        console.log('Tag received: ', data.tag, 'Own tag: ', this.attr.tag);
         if (data.tag === this.attr.tag) {
           this.onStreamData(data.results);
         }

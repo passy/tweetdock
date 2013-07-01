@@ -32,7 +32,7 @@ define(function (require) {
 
     this.model = {};
 
-    this.onTitleChange = function () {
+    this.onTitleChangeRequested = function () {
       this.trigger('uiShowSearchPrompt');
     };
 
@@ -70,7 +70,7 @@ define(function (require) {
       this.render();
 
       this.on('click', {
-        titleSelector: this.onTitleChange
+        titleSelector: this.onTitleChangeRequested
       });
 
       this.on('uiSaveSearchPrompt', this.onSearchPromptSave);

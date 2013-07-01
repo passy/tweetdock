@@ -36,24 +36,25 @@ define(function (require) {
       };
     };
 
-    this.poll = function poll() {
-      console.log('Polling for streams: ', streams);
-      _.each(streams, function (stream, tag) {
-        jQuery.ajax({
-          url: config.API_ENDPOINT + '/search/tweets.json',
-          type: 'get',
-          data: buildStreamData(stream),
-          headers: {
-            'X-Requested-With': 'TweetDock v0.0.0',
-            'Authorization': config.API_AUTHORIZATION
-          }
-        }).then(function (data) {
-          this.onDataReceived(tag, data);
-        }.bind(this)).always(function () {
-          // Start the next timeout after the request ended.
-          this.run();
-        }.bind(this));
+    this.pollSingle = function (stream, tag) {
+      jQuery.ajax({
+        url: config.API_ENDPOINT + '/search/tweets.json',
+        type: 'get',
+        data: buildStreamData(stream),
+        headers: {
+          'X-Requested-With': 'TweetDock v0.0.0',
+          'Authorization': config.API_AUTHORIZATION
+        }
+      }).then(function (data) {
+        this.onDataReceived(tag, data);
+      }.bind(this)).always(function () {
+        // Start the next timeout after the request ended.
+        this.run();
       }.bind(this));
+    };
+
+    this.poll = function poll(tag) {
+      _.each(streams, this.pollSingle.bind(this));
     };
 
     this.run = function run() {
@@ -80,7 +81,7 @@ define(function (require) {
         lastId: 0
       };
 
-      this.poll();
+      this.pollSingle(streams[data.tag], data.tag);
       this.run();
     };
 
