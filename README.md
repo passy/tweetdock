@@ -12,4 +12,12 @@ npm install & bower install
 grunt server
 ```
 
+Oh, and unfortunately MDV/Polymer isn't installable via bower yet, because it
+has recursive dependencies (submodules and stuff). So, you need to manually
+clone it:
+
+```
+git clone --recursive https://github.com/Polymer/mdv app/bower_components/mdv
+```
+
 License: [WTFPL](http://www.wtfpl.net/)
