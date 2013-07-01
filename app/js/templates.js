@@ -14,7 +14,8 @@ define(
     };
 
     _.each(mapping, function (value, key) {
-      templates[key] = document.getElementById(value);
+      var tmpl = document.getElementById(value).textContent;
+      templates[key] = _.template(tmpl);
     });
 
     return templates;

@@ -32,8 +32,13 @@ define(function (require) {
       user: { screen_name: 'sindresorhus' }
     }];
 
+    this.render = function () {
+      this.$node.html(templates.tweetItems({ tweets: '{{tweets}}' }));
+      this.node.querySelector('template').model = { tweets: tweets };
+    };
+
     this.after('initialize', function () {
-      this.$node.html(templates.tweetItems({ tweets: tweets }));
+      this.render();
     });
   }
 

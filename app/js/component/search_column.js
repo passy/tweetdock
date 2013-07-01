@@ -30,41 +30,49 @@ define(function (require) {
       tweetHolderSelector: '.td-tweet-holder'
     });
 
+    this.model = {};
+
+    this.onTitleChange = function () {
+      this.trigger('uiShowSearchPrompt');
+    };
+
+    this.onSearchPromptSave = function (ev, data) {
+      console.log('New search query: ', data.query);
+
+      this.attr.query = data.query;
+      this.update();
+    };
+
+    this.render = function () {
+      this.node.innerHTML = templates.column();
+      // Not very pretty ...
+      this.select('titleSelector')[0].childNodes[0].bind(
+        'textContent', this.model, 'title');
+      this.update();
+    };
+
+    this.update = function () {
+      this.model.title = 'Search: ' + this.attr.query;
+      Platform.performMicrotaskCheckpoint();
+    };
+
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');
-      this.template = this.node.querySelector('template');
-
-      this.onTitleChange = function () {
-        this.trigger('uiShowSearchPrompt');
-      };
-
-      this.onSearchPromptSave = function (ev, data) {
-        console.log('New search query: ', data.query);
-
-        this.attr.query = data.query;
-        this.render();
-      };
-
-      this.render = function () {
-        this.template.model = {
-          title: 'Search: ' + this.attr.query
-        };
-        Platform.performMicrotaskCheckpoint();
-      };
 
       this.render();
       this.trigger('dataSearchStreamRequested', {
         tag: tag,
         query: this.attr.query
       });
-      tweetItems.attachTo(this.select('tweetHolderSelector'), {
-        tag: tag
-      });
 
       this.on('click', {
         titleSelector: this.onTitleChange
       });
       this.on('uiSaveSearchPrompt', this.onSearchPromptSave);
+
+      tweetItems.attachTo(this.select('tweetHolderSelector'), {
+        tag: tag
+      });
     });
   }
 
