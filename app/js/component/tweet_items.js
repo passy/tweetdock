@@ -8,6 +8,7 @@ define(function (require) {
 
   var defineComponent = require('flight/lib/component');
   var templates = require('templates');
+  var _ = require('underscore');
 
   /**
    * Module exports
@@ -39,10 +40,11 @@ define(function (require) {
     };
 
     this.onStreamData = function (results) {
-      console.log('tweeets');
       _.each(results, function (tweet) {
         tweets.unshift(tweet);
       });
+
+      Platform.performMicrotaskCheckpoint();
     };
 
     this.after('initialize', function () {
