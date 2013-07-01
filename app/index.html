@@ -7,8 +7,27 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/css/main.css">
+
+    <script src="/bower_components/mdv/mdv.js"></script>
   </head>
   <body>
+    <template id="template-column">
+      <h4 class="title">{{title}}</h4>
+      <section class="td-tweet-holder">
+      </section>
+    </template>
+
+    <template id="template-tweet-item">
+      <article class="td-tweet">
+        <header>
+        <strong class="from"><a target="_blank" href="https://twitter.com/{{user.screen_name}}">
+          @{{user.screen_name}}
+        </a></strong>
+        </header>
+        <div class="text">{{text}}</div>
+      </article>
+    </template>
+
     <div class="container">
       <div class="navbar">
         <div class="navbar-inner">
@@ -21,7 +40,7 @@
       </div>
       <div class="row-fluid td-container">
         <div id="td-column-1" class="span4">
-          1
+          <template ref="template-column" bind>Loading column #1 …</template>
         </div>
         <div id="td-column-2" class="span4">
           2
@@ -31,25 +50,6 @@
         </div>
       </div>
     </div>
-
-    <script type="text/handlebars" id="template-column">
-      <h4 class="title">{{title}}</h4>
-      <section class="td-tweet-holder">
-      </section>
-    </script>
-
-    <script type="text/handlebars" id="template-tweet-items">
-      {{#each tweets}}
-        <article class="td-tweet">
-          <header>
-          <strong class="from"><a target="_blank" href="https://twitter.com/{{user.screen_name}}">
-            @{{user.screen_name}}
-          </a></strong>
-          </header>
-          <div class="text">{{text}}</div>
-        </article>
-      {{/each}}
-    </script>
 
     <div class="modal hide fade" id="td-search-modal">
       <div class="modal-header">

@@ -21,6 +21,7 @@
   "predef": [
     "$",
     "jQuery",
+    "Platform",
     "before",
     "beforeEach",
     "define",

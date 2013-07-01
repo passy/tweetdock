@@ -1,11 +1,10 @@
 define(
 
   [
-    'handlebars',
     'underscore'
   ],
 
-  function (Handlebars, _) {
+  function (_) {
     'use strict';
 
     var templates = {};
@@ -15,8 +14,7 @@ define(
     };
 
     _.each(mapping, function (value, key) {
-      var tmpl = document.getElementById(value).textContent;
-      templates[key] = Handlebars.compile(tmpl);
+      templates[key] = document.getElementById(value);
     });
 
     return templates;

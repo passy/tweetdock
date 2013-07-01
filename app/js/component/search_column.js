@@ -32,6 +32,7 @@ define(function (require) {
 
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');
+      this.template = this.node.querySelector('template');
 
       this.onTitleChange = function () {
         this.trigger('uiShowSearchPrompt');
@@ -41,12 +42,14 @@ define(function (require) {
         console.log('New search query: ', data.query);
 
         this.attr.query = data.query;
+        this.render();
       };
 
       this.render = function () {
-        this.$node.html(templates.column({
+        this.template.model = {
           title: 'Search: ' + this.attr.query
-        }));
+        };
+        Platform.performMicrotaskCheckpoint();
       };
 
       this.render();
