@@ -53,10 +53,10 @@ define(function (require) {
 
     this.update = function () {
       this.model.title = 'Search: ' + this.attr.query;
+      console.log('Model for', this.node, ':', this.model);
       this.requestStream();
       Platform.performMicrotaskCheckpoint();
     };
-
 
     this.after('initialize', function () {
       var tag = _.uniqueId('search-');

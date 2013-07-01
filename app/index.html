@@ -6,6 +6,8 @@
     <title>tweetdock</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="bower_components/mdv/mdv.js"></script>
   </head>
@@ -34,7 +36,10 @@
     </div>
 
     <script type="text/x-template" id="template-column">
-      <h4 class="title">Loading …</h4>
+      <div class="td-column-header">
+        <h4 class="title">Loading …</h4>
+        <span class="icon icon-edit"></span>
+      </div>
       <section class="td-tweet-holder">
       </section>
     </script>
