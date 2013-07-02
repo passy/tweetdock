@@ -26,4 +26,4 @@ git clone --recursive https://github.com/Polymer/mdv app/bower_components/mdv
 
 ## License
 
-License: [WTFPL](http://www.wtfpl.net/)
+MIT
