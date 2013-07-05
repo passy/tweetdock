@@ -20,6 +20,9 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="http://passy.me" target="_blank">About</a></li>
           </ul>
+          <ul class="nav pull-right">
+            <li><button class="btn">Add Column</button></li>
+          </ul>
         </div>
       </div>
       <div class="row-fluid td-container">
@@ -62,7 +65,7 @@
     <div class="modal hide fade" id="td-search-modal">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Search</h3>
+        <h3>Edit Column</h3>
       </div>
       <div class="modal-body">
         <p>What do you want to search for?</p>
@@ -71,6 +74,7 @@
         </form>
       </div>
       <div class="modal-footer">
+        <button class="btn btn-danger pull-left td-delete-btn">Delete column</button>
         <button type="submit" form="td-search-modal-form" class="btn btn-primary">Save changes</a>
       </div>
     </div>
