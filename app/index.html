@@ -21,11 +21,11 @@
             <li><a href="http://passy.me" target="_blank">About</a></li>
           </ul>
           <ul class="nav pull-right">
-            <li><button class="btn">Add Column</button></li>
+            <li><button class="btn" id="td-add-column-btn">Add Column</button></li>
           </ul>
         </div>
       </div>
-      <div class="row-fluid td-container">
+      <div class="row-fluid td-container" id="td-column-container">
         <div class="td-scroll-box">
           <div class="td-column-holder">
             <div id="td-column-1" class="td-column">
@@ -34,16 +34,6 @@
           </div>
           <div class="td-column-holder">
             <div id="td-column-2" class="td-column">
-              Loading …
-            </div>
-          </div>
-          <div class="td-column-holder">
-            <div id="td-column-3" class="td-column">
-              Loading …
-            </div>
-          </div>
-          <div class="td-column-holder">
-            <div id="td-column-4" class="td-column">
               Loading …
             </div>
           </div>
@@ -62,6 +52,10 @@
 
     <script type="text/x-template" id="template-tweet-items">
       <template ref="template-tweet" bind repeat="{{tweets}}"></template>
+    </script>
+
+    <script type="text/x-template" id="template-column-holder">
+      <div class="td-column-holder"></div>
     </script>
 
     <template id="template-tweet">
@@ -100,6 +94,7 @@
     <script async src="/bower_components/requirejs/require.js" data-main="/js/main.js"></script>
     <script async src="/bower_components/bootstrap/js/bootstrap-modal.js"></script>
     <script async src="/bower_components/bootstrap/js/bootstrap-transition.js"></script>
+    <script async src="/bower_components/transition-end/src/transition-end.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
