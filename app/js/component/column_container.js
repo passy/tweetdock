@@ -7,6 +7,7 @@ define(function (require) {
    */
 
   var defineComponent = require('flight/lib/component');
+  var searchColumn = require('component/search_column');
   var templates = require('templates');
 
   /**
@@ -21,8 +22,14 @@ define(function (require) {
 
   function columnContainer() {
     this.defaultAttrs({
-      boxSelector: '.td-scroll-box'
+      boxSelector: '.td-scroll-box',
+      columnClassName: 'td-column',
+      queries: ['#kittens', '#bunnies', '#javascript', '#tweetdeck']
     });
+
+    this._getRandomQuery = function () {
+      return this.attr.queries[~~(Math.random() * this.attr.queries.length)];
+    };
 
     this.addColumn = function () {
       var element = document.createElement('div');
@@ -30,6 +37,17 @@ define(function (require) {
       var holder = element.querySelector('.td-column-holder');
       holder.classList.add('animate-flip-in');
       this.$box.append(holder);
+
+      this._loadColumn(holder);
+    };
+
+    this._loadColumn = function (holder) {
+      var element = document.createElement('div');
+      element.classList.add(this.attr.columnClassName);
+      holder.appendChild(element);
+      searchColumn.attachTo(element, {
+        query: this._getRandomQuery()
+      });
     };
 
     this.removeColumn = function (ev, data) {
