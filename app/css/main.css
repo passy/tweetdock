@@ -1,17 +1,52 @@
-.td-container > div {
+html, body, .container {
+  height: 100%;
+}
+
+.td-container {
+  height: calc(100% - 62px - 1em);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.td-scroll-box {
+  width: auto;
+  white-space: nowrap;
+  height: 100%;
+
+  counter-reset: column;
+}
+
+.td-scroll-box > div {
+  height: calc(100% - 1em);
   border-radius: 4px;
   padding: 1em;
   margin-bottom: 1em;
-
-  overflow-y: auto;
 }
 
-.td-container > div:nth-child(even) {
+.td-scroll-box > div:nth-child(even) {
   background: #bbd8e9;
 }
 
-.td-container > div:nth-child(odd) {
+.td-scroll-box > div:nth-child(odd) {
   background: #dceaf4;
+}
+
+.td-column-holder {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 310px;
+  margin-left: 1em;
+  vertical-align: top;
+  position: relative;
+}
+
+.td-column {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  white-space: normal;
+
+  counter-increment: column;
 }
 
 .td-tweet {
@@ -20,6 +55,19 @@
 
 .td-tweet-holder {
   transition: all 1s ease-in;
+}
+
+.td-column-header .title::before {
+  display: inline-block;
+  content: counter(column);
+  margin-right: 4px;
+
+  text-align: center;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .td-column-header {
@@ -37,4 +85,58 @@
 
 .td-column-header:hover .icon {
   opacity: 1;
+}
+
+/** Webkit stuff **/
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/** Animations **/
+
+@keyframes flipOutY {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipInY {
+  0% {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-flip-out {
+  backface-visibility: visible !important;
+  animation-name: flipOutY;
+  animation-duration: 1s;
+}
+
+.animate-flip-in {
+  backface-visibility: visible !important;
+  animation-name: flipInY;
+  animation-duration: 1s;
 }

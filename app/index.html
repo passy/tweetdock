@@ -20,17 +20,23 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="http://passy.me" target="_blank">About</a></li>
           </ul>
+          <ul class="nav pull-right">
+            <li><button class="btn" id="td-add-column-btn">Add Column</button></li>
+          </ul>
         </div>
       </div>
-      <div class="row-fluid td-container">
-        <div id="td-column-1" class="span4">
-          Loading …
-        </div>
-        <div id="td-column-2" class="span4">
-          Loading …
-        </div>
-        <div id="td-column-3" class="span4">
-          Loading …
+      <div class="row-fluid td-container" id="td-column-container">
+        <div class="td-scroll-box">
+          <div class="td-column-holder">
+            <div id="td-column-1" class="td-column">
+              Loading …
+            </div>
+          </div>
+          <div class="td-column-holder">
+            <div id="td-column-2" class="td-column">
+              Loading …
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +54,10 @@
       <template ref="template-tweet" bind repeat="{{tweets}}"></template>
     </script>
 
+    <script type="text/x-template" id="template-column-holder">
+      <div class="td-column-holder"></div>
+    </script>
+
     <template id="template-tweet">
       <article class="td-tweet">
         <header>
@@ -62,7 +72,7 @@
     <div class="modal hide fade" id="td-search-modal">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Search</h3>
+        <h3>Edit Column</h3>
       </div>
       <div class="modal-body">
         <p>What do you want to search for?</p>
@@ -71,6 +81,7 @@
         </form>
       </div>
       <div class="modal-footer">
+        <button class="btn btn-danger pull-left td-delete-btn">Delete column</button>
         <button type="submit" form="td-search-modal-form" class="btn btn-primary">Save changes</a>
       </div>
     </div>
@@ -83,6 +94,7 @@
     <script async src="/bower_components/requirejs/require.js" data-main="/js/main.js"></script>
     <script async src="/bower_components/bootstrap/js/bootstrap-modal.js"></script>
     <script async src="/bower_components/bootstrap/js/bootstrap-transition.js"></script>
+    <script async src="/bower_components/transition-end/src/transition-end.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

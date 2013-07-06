@@ -21,7 +21,8 @@ define(function (require) {
   function searchPrompt() {
     this.defaultAttrs({
       selector: '#td-search-modal',
-      saveSelector: '#td-search-modal form'
+      saveSelector: '#td-search-modal form',
+      deleteSelector: '#td-search-modal .td-delete-btn'
     });
 
     // There can only be one search prompt at the time, so it's save
@@ -43,9 +44,18 @@ define(function (require) {
       });
     };
 
+    this.delete = function (ev) {
+      ev.preventDefault();
+      this.trigger(origin, 'uiRemoveColumnRequested');
+      this.$node.modal('hide');
+    };
+
     this.after('initialize', function () {
       this.on(document, 'uiShowSearchPrompt', this.show);
 
+      this.on('click', {
+        deleteSelector: this.delete
+      });
       this.on('submit', this.save);
     });
   }
