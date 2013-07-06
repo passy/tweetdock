@@ -1,17 +1,48 @@
-.td-container > div {
+html, body, .container {
+  height: 100%;
+}
+
+.td-container {
+  height: calc(100% - 62px - 1em);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.td-scroll-box {
+  width: auto;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.td-scroll-box > div {
+  height: calc(100% - 1em);
   border-radius: 4px;
   padding: 1em;
   margin-bottom: 1em;
-
-  overflow-y: auto;
 }
 
-.td-container > div:nth-child(even) {
+.td-scroll-box > div:nth-child(even) {
   background: #bbd8e9;
 }
 
-.td-container > div:nth-child(odd) {
+.td-scroll-box > div:nth-child(odd) {
   background: #dceaf4;
+}
+
+.td-scroll-box .td-column-holder {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 310px;
+  margin-left: 1em;
+  vertical-align: top;
+  position: relative;
+}
+
+.td-scroll-box .td-content {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  white-space: normal;
 }
 
 .td-tweet {
@@ -37,4 +68,22 @@
 
 .td-column-header:hover .icon {
   opacity: 1;
+}
+
+/** Webkit stuff **/
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
 }
