@@ -12,6 +12,8 @@ html, body, .container {
   width: auto;
   white-space: nowrap;
   height: 100%;
+
+  counter-reset: column;
 }
 
 .td-scroll-box > div {
@@ -29,7 +31,7 @@ html, body, .container {
   background: #dceaf4;
 }
 
-.td-scroll-box .td-column-holder {
+.td-column-holder {
   box-sizing: border-box;
   display: inline-block;
   width: 310px;
@@ -38,11 +40,13 @@ html, body, .container {
   position: relative;
 }
 
-.td-scroll-box .td-content {
+.td-column {
   height: 100%;
   overflow: hidden;
   overflow-y: scroll;
   white-space: normal;
+
+  counter-increment: column;
 }
 
 .td-tweet {
@@ -51,6 +55,19 @@ html, body, .container {
 
 .td-tweet-holder {
   transition: all 1s ease-in;
+}
+
+.td-column-header .title::before {
+  display: inline-block;
+  content: counter(column);
+  margin-right: 4px;
+
+  text-align: center;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .td-column-header {
