@@ -10,6 +10,7 @@ define(
     var templates = {};
     var mapping = {
       column: 'template-column',
+      columnHolder: 'template-column-holder',
       tweetItems: 'template-tweet-items'
     };
 

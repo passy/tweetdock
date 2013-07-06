@@ -46,7 +46,8 @@ define(function (require) {
 
     this.delete = function (ev) {
       ev.preventDefault();
-      this.trigger(origin, 'uiColumnDeletionRequested');
+      this.trigger(origin, 'uiRemoveColumnRequested');
+      this.$node.modal('hide');
     };
 
     this.after('initialize', function () {
