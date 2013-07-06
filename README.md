@@ -3,9 +3,10 @@
 > Toying around with [Flight](http://twitter.github.io/flight/) to build
 > something similar to [TweetDeck](http://tweetdeck.com/).
 
-There isn't anything to see, yet. This will need some sort of back-end to
-realize the search with the Twitter API v1.1. Anyway, if you want to snoop
-around, you can set it up with:
+Since i'm too lazy to build my own backend at the moment, this builds on top of
+supertweet.net and you need to create an account there and capture the
+Authentication header, which you need to put into the `config.js` file. If this
+doesn't scare you off, you can set it up with:
 
 ```bash
 npm install & bower install
@@ -20,9 +21,10 @@ clone it:
 git clone --recursive https://github.com/Polymer/mdv app/bower_components/mdv
 ```
 
-## Screenshot
+## Screenshots
 
-![It really looks that shitty.](media/screenshot_0.png)
+![It really looks that shitty.](media/screenshot0.png)
+![But you can add new stuff now.](media/screenshot1.png)
 
 ## License
 
