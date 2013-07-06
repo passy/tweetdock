@@ -3,10 +3,10 @@
 > Toying around with [Flight](http://twitter.github.io/flight/) to build
 > something similar to [TweetDeck](http://tweetdeck.com/).
 
-Since i'm too lazy to build my own backend at the moment, this builds on top of
-supertweet.net and you need to create an account there and capture the
-Authentication header, which you need to put into the `config.js` file. If this
-doesn't scare you off, you can set it up with:
+Since I'm too lazy to build my own backend at the moment, this builds on top of
+supertweet.net and you need to create an account there. After that, you need to
+add your username and password to `app/js/config.js`. If this doesn't scare you
+off, you can set it up with:
 
 ```bash
 npm install & bower install
