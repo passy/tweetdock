@@ -85,8 +85,13 @@ define(function (require) {
       this.run();
     };
 
+    this.stopSearchStream = function stopSearchStream(ev, data) {
+      delete streams[data.tag];
+    };
+
     this.after('initialize', function () {
       this.on('dataSearchStreamRequested', this.startSearchStream);
+      this.on('dataSearchRemovalRequested', this.stopSearchStream);
     });
   }
 

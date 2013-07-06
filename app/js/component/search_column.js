@@ -41,6 +41,13 @@ define(function (require) {
       this.update();
     };
 
+    this.onRemove = function (ev, data) {
+      ev.stopPropagation();
+      this.teardown();
+      // Reraise with tag annotation
+      this.trigger('uiRemoveColumnRequested', { tag: this.attr.tag });
+    };
+
     this.render = function () {
       this.node.innerHTML = templates.column();
       // Not very pretty ...
@@ -57,12 +64,12 @@ define(function (require) {
     };
 
     this.after('initialize', function () {
-      var tag = _.uniqueId('search-');
+      this.tag = _.uniqueId('search-');
       this.model = {};
 
       this.requestStream = function () {
         this.trigger('dataSearchStreamRequested', {
-          tag: tag,
+          tag: this.tag,
           query: this.attr.query
         });
       };
@@ -73,8 +80,9 @@ define(function (require) {
       });
 
       this.on('uiSaveSearchPrompt', this.onSearchPromptSave);
+      this.on('uiRemoveColumnRequested', this.onRemove);
       tweetItems.attachTo(this.select('tweetHolderSelector'), {
-        tag: tag
+        tag: this.tag
       });
     });
   }
