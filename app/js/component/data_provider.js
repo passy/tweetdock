@@ -35,6 +35,9 @@ define(function (require) {
         result_type: 'mixed'
       };
     };
+    var getAuthHeader = function getAuthHeader() {
+      return 'Basic ' + btoa([config.USERNAME, config.PASSWORD].join(':'));
+    };
 
     this.pollSingle = function (stream, tag) {
       jQuery.ajax({
@@ -43,7 +46,7 @@ define(function (require) {
         data: buildStreamData(stream),
         headers: {
           'X-Requested-With': 'TweetDock v0.0.0',
-          'Authorization': config.API_AUTHORIZATION
+          'Authorization': getAuthHeader()
         }
       }).then(function (data) {
         this.onDataReceived(tag, data);
