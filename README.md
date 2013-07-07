@@ -21,6 +21,8 @@ clone it:
 git clone --recursive https://github.com/Polymer/mdv app/bower_components/mdv
 ```
 
+There also is a `setup.sh` that automates those three steps.
+
 ## Screenshots
 
 ![It really looks that shitty.](media/screenshot0.png)
