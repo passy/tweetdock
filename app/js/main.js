@@ -26,7 +26,7 @@ require(
     'flight/lib/registry',
     'flight/lib/advice',
     'flight/lib/logger',
-    'flight/tools/debug/debug'
+    'flight/lib/debug'
   ],
 
   function(compose, registry, advice, withLogging, debug) {
