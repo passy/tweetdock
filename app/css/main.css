@@ -18,6 +18,18 @@ html, body, .container {
   padding-right: 1em;
 }
 
+.desaturated {
+  filter: saturate(0%);
+  transition: filter 0.2s;
+  /* Ugh, have to work around an autoprefixer bug. */
+  transition: -webkit-filter 0.2s;
+  transition: -moz-filter 0.2s;
+}
+
+.desaturated__wrapper:hover .desaturated {
+  filter: saturate(100%);
+}
+
 
 /** Tweetdock specific */
 
