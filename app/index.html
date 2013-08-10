@@ -59,13 +59,18 @@
     </script>
 
     <template id="template-tweet">
-      <article class="td-tweet">
-        <header>
-        <strong class="from"><a target="_blank" href="https://twitter.com/{{user.screen_name}}">
-          @{{user.screen_name}}
-        </a></strong>
-        </header>
-        <div class="text">{{text}}</div>
+      <article class="td-tweet media">
+        <div class="media__img">
+          <img src="{{user.profile_image_url_https}}" alt="{{user.screen_name}}">
+        </div>
+        <div class="media__body">
+          <header>
+            <strong rel="author" class="from"><a target="_blank" href="https://twitter.com/{{user.screen_name}}">
+              @{{user.screen_name}}
+            </a></strong>
+          </header>
+          <div class="text">{{text}}</div>
+        </div>
       </article>
     </template>
 

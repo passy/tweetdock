@@ -2,6 +2,25 @@ html, body, .container {
   height: 100%;
 }
 
+
+/** Generic styles */
+
+.media {
+}
+
+.media__img {
+  float: left;
+  margin-right: 1em;
+}
+
+.media__body {
+  display: table-cell;
+  padding-right: 1em;
+}
+
+
+/** Tweetdock specific */
+
 .td-container {
   height: calc(100% - 62px - 1em);
   overflow: hidden;
