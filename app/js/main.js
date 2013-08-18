@@ -29,12 +29,12 @@ require(
     'flight/lib/debug'
   ],
 
-  function(compose, registry, advice, withLogging, debug) {
+  function (compose, registry, advice, withLogging, debug) {
     debug.enable(true);
     DEBUG.events.logAll();
     compose.mixin(registry, [advice.withAdvice, withLogging]);
 
-    require(['page/default'], function(initializeDefault) {
+    require(['page/default'], function (initializeDefault) {
       initializeDefault();
     });
   }
