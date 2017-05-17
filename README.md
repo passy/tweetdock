@@ -1,5 +1,7 @@
 # flight-tweetdock
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/passy/tweetdock.svg)](https://greenkeeper.io/)
+
 > Toying around with [Flight](http://twitter.github.io/flight/) to build
 > something similar to [TweetDeck](http://tweetdeck.com/).
 
